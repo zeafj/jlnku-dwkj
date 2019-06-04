@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="standard-1.1.2-sources">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/standard-1.1.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
