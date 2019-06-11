@@ -26,9 +26,9 @@ public class UserDaoImpl implements UserDao {
 
         return null;
     }
-
+    //登录验证
     @Override
-    public int getPower(String user, String password) {
+    public User getPower(String user, String password) {
 
         String sql = "select * from user where user = '%s' and password = '%s'";
         sql=String.format(sql, user,password);
@@ -51,9 +51,9 @@ public class UserDaoImpl implements UserDao {
         System.out.println(u);
 
         if (u.getPower()!=null){
-            return  u.getPower();
+            return  u;
         }else {
-            return -1;
+            return null;
         }
 
     }

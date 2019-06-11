@@ -12,8 +12,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
-//@WebServlet("/htgl/UserServlet/*")
-@WebServlet(urlPatterns = {"/htgl/UserServlet/*",""})
+@WebServlet("/UserServlet/*")
+//@WebServlet(urlPatterns = {"/htgl/UserServlet/*",""})
 public class UserServlet extends BaseServlet {
 
 
@@ -24,7 +24,7 @@ public class UserServlet extends BaseServlet {
      * @throws ServletException
      * @throws IOException
      */
-    public  void login(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException{
+    public  String login(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException{
 
         String user = request.getParameter("user");
         String password = request.getParameter("password");
@@ -33,7 +33,9 @@ public class UserServlet extends BaseServlet {
 
        // ArrayList<User> listUser = userService.listUser(user,password);
 
-        int power = userService.getPower(user,password);
+        User u = userService.getPower(user,password);
+
+        int power = u.getPower();
 
         System.out.println("------UserServlet in Login method-----");
         System.out.println("power is =========="+power);
@@ -41,25 +43,22 @@ public class UserServlet extends BaseServlet {
 
         if(power==-1){
             //无法登录  数据库中无该用户
-
+            return null;
         }else if(power==0){
             //超级管理员
-
+            return null;
         }else if(power==1){
             //普通管理员
             HttpSession session = request.getSession();
-            session.setAttribute("loginName",user);
-            response.sendRedirect("index.jsp");
+            session.setAttribute("user",u);
+            return "redirect:/htgl/index";
+//            response.sendRedirect("index.jsp");
 
         }
+        return null;
     }
 
     public  void demoUser(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException{
-
-
-
         System.out.println("------UserServlet in demoUser method-----");
-
-
     }
 }

@@ -21,10 +21,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int getPower(String user,String password ){
+    public User getPower(String user, String password ){
 
-        int power =  userDao.getPower(user,password);
+        User u =  userDao.getPower(user,password);
 
-        return power;
+        return u;
     }
 }
