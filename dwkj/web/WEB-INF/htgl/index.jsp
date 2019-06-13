@@ -33,7 +33,7 @@
 </div>
 <div class="nav">
     <ul>
-        <li><a href="${pageContext.request.contextPath}/htgl/nav_index">导航管理</a></li>
+        <li><a href="${pageContext.request.contextPath}/NavServlet/query">导航管理</a></li>
         <li></li>
         <li></li>
         <li></li>
