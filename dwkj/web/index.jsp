@@ -21,7 +21,8 @@
     <meta http-equiv="expires" content="0">
     <script>
         //直接跳转首页
-        window.location.href= "<%=path%>" + "/htgl/login";
+        //window.location.href= "<%=path%>" + "/htgl/login";
+        window.location.href= "${pageContext.request.contextPath}/NavServlet/mainnav";
     </script>
 </head>
 

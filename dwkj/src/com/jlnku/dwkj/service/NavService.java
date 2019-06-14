@@ -12,4 +12,6 @@ public interface NavService {
     int updataCategory(String id,String name, String lead , String servlet);
 
     ArrayList<Category> listCategoryLead();
+
+    int addCategory(String name, String lead, String servlet);
 }

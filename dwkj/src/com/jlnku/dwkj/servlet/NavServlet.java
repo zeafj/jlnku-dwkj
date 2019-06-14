@@ -64,6 +64,7 @@ public class NavServlet extends BaseServlet {
         request.getRequestDispatcher("/WEB-INF/htgl/nav_updata.jsp").forward(request,response);
     }
 
+
     /**
      * 修改导航项
      * @param request
@@ -78,22 +79,41 @@ public class NavServlet extends BaseServlet {
         String lead = request.getParameter("lead");
         String servlet = request.getParameter("servlet");
 
-
-
-
         int affectLine = navService.updataCategory(id,name,lead,servlet);
 
         if (affectLine!= 0){
             System.out.println("更新成功");
             request.getRequestDispatcher("/NavServlet/query").forward(request,response);
 
-
         }else{
             System.out.println("更新失败");
             request.getRequestDispatcher("/NavServlet/query").forward(request,response);
         }
+    }
 
-        //request.getRequestDispatcher("/WEB-INF/htgl/nav_index.jsp").forward(request,response);
+    /**
+     * 添加导航条
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void add(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException{
+
+        String name = request.getParameter("name");
+        String lead = request.getParameter("lead");
+        String servlet = request.getParameter("servlet");
+
+        int affectLine = navService.addCategory(name,lead,servlet);
+
+        if (affectLine!= 0){
+            System.out.println("添加成功");
+            request.getRequestDispatcher("/NavServlet/query").forward(request,response);
+
+        }else{
+            System.out.println("添加失败");
+            request.getRequestDispatcher("/NavServlet/query").forward(request,response);
+        }
     }
 
     /**
@@ -132,6 +152,23 @@ public class NavServlet extends BaseServlet {
         System.out.println("------UserServlet in demoUser method-----");
     }
 
+    /**
+     * 获取一级导航
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void mainnav(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException{
+
+        ArrayList<Category> nav_list_lead = navService.listCategoryLead();
+        request.setAttribute("nav_list_lead",nav_list_lead);
+
+        ArrayList<Category> nav_list = navService.listCategory();
+        request.setAttribute("nav_list",nav_list);
+
+        request.getRequestDispatcher("/head.jsp").forward(request,response);
+    }
 
 
 }

@@ -12,7 +12,7 @@
     <title>导航管理</title>
 </head>
 <body>
-<a href="#">添加导航</a>
+<a href="${pageContext.request.contextPath}/htgl/jumpadd">添加导航</a>
 <br>
 <hr>
 <table>

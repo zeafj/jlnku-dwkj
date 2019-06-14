@@ -39,4 +39,10 @@ public class NavServiceImpl implements NavService {
         return list;
     }
 
+    @Override
+    public int addCategory(String name, String lead, String servlet) {
+        int affectLine = navDao.addCategory(name,lead,servlet);
+        return affectLine;
+    }
+
 }

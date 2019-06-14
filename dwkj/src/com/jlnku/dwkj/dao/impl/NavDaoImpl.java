@@ -109,5 +109,22 @@ public class NavDaoImpl implements NavDao {
         return list;
     }
 
+    @Override
+    public int addCategory(String name, String lead, String servlet) {
+        String sql = "insert into category (category_name,category_lead,category_servlet) values ('%s','%s','%s')";
+        sql=String.format(sql, name,lead,servlet);
+        System.out.println("insert sql  is =============== - "+sql);
+        Connection conn = null ;
+        try {
+            conn=DbcpUtil.getConnection();
+            Statement st = conn.createStatement();
+            int affectLine = st.executeUpdate(sql);
+            return affectLine;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 
 }
